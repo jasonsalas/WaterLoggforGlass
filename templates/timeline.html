@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="robots" content="noindex,nofollow"/>
+		<title>{{ glasware_title }} Glassware</title>
+		<style type="text/css">
+			.voiceCommand { font-style:italic; font-weight:bold; color:purple;  }
+		</style>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
+	</head>
+	<body>
+		
+		<h1>{{ greeting }}{ glassware_title }}!</h1>
+		<p>
+			<img src="/static/images/waterlogg.jpg"/>
+			<br/>
+			Now that you're authorized, use the <span class="voiceCommand">"OK Glass...{{ voice_command }}...{{ glassware_title }}"</span> command, and then speak the volume of water you've just consumed. It'll be reflected on your <a target="_blank" href="https://www.fitbit.com/">Fitbit dashboard</a>.
+		</p>
+		
+		<p>
+			<h3>Genesis</h3>
+			Fitbit is one of the most fun wearable computing devices around, and it's frequently used in Google Glass hackathons as the base for neat ideas. There are also several cool projects leveraging the Fitbit API, including:
+
+			<ul>
+				<li><a href="https://github.com/vzaliva/m-distance">m-distance by Vadim Zaliva</a> (<strong>open source!</strong>)</li>
+				<li><a href="http://www.digitalforreallife.com/2013/09/fitbit-glassware/">Nurun's Fitbit Glassware</a></li>
+				<li><a href="http://glassalmanac.com/new-app-connects-fitbit-google-glass/1812/">Fitbit/Glass Bridge</a></li>
+			</ul>
+
+			Still, the one use case that wasn't working for me was having to repeatedly log intake in Fitbit's mobile and web apps gets laborious and often takes the user away from doing more important things. This is precisely the problem that Google Glass solves - decoupling you from technology and not taking you out of the moment! This simple App Engine-hosted service lets you use handsfree voice dictation to post updates everytime you hydrate, which updates your Fitbit profile.
+		</p>
+		
+		<p>
+			This Glassware uses the following libraries:
+
+			<ul>
+				<li>
+					<a href="https://developers.google.com/api-client-library/python/guide/aaa_oauth">Google APIs Client Library for Python</a> to make authorized requests using OAuth 2.0 to the <a href="https://developers.google.com/glass/v1/reference/">Google Glass Mirror API</a>
+				</li>
+				<li>
+					<a href="https://www.temboo.com/library/Library/Fitbit/">Temboo's Fitbit library</a> to manage the <a href="https://wiki.fitbit.com/display/API/OAuth+Authentication+in+the+Fitbit+API">OAuth 1.0 flow and credentials</a> ad communicate with the <a href="https://www.fitbit.com/dev/dev">Fitbit API</a>
+				</li>
+				<li>
+					A forked version of <a href="https://plus.google.com/+AlainVongsouvanh">Alain Vongsouvahn's</a> code from the <a href="https://github.com/googleglass/mirror-quickstart-python">Quick Start Project for Python</a> to negotiate the Outh 2.0 dance
+				</li>
+				<li>
+					<a href="https://cloud.google.com/appengine/docs/python/taskqueue/">Google App Engine's Task Queue</a> to asynchronously handle notification pings from Google (in the log files, the user agent will be an HTTP-POST request from <strong>GlassAPI</strong>)
+				</li>
+			</ul>
+		</p>
+		
+		<p>
+			Using the Task Queue helps greatly with scalability and performance, as the multiple API calls to remote web services can imposes a tad bit of latency, which would add-up at scale. And you don't want delays at your callback URL. Remember: <strong>DON'T LET YOUR ENDPOINT BECOME YOUR CHOKEPOINT!</strong>
+		</p>
+		
+		<p>
+			<i><strong>Disclaimer:</strong> This was written to be a personal utility, and due to API rate limits from Google, Fitbit, and Temboo, at the moment probably isn't ready to handle mass deployment requests. It wouldn't be too hard to scale it up, though. Go for it!</i>
+		</p>
+		
+		<hr/>
+		
+		<div>
+			<form name="signoutForm" action="/signout" method="post">
+				<input type="submit" value="signout"> 
+			</form>
+		</div>
+		
+	</body>
+</html>
