@@ -1,10 +1,10 @@
-# Waterlogg - update your Fitbit profile via voice!
+# WaterLogg for Google Glass - update your Fitbit profile on your head via voice!
 ## A utility integrating Fitbit with Google Glass
 
-![Waterlogg lets you update your Fitbit profile with Google Glass using voice commands](https://dl.dropboxusercontent.com/u/12019700/glass-dev/tester-images/waterlogg-in-action.jpg)
+![WaterLogg for Google Glass lets you update your Fitbit profile with Google Glass using voice commands](https://dl.dropboxusercontent.com/u/12019700/glass-dev/tester-images/waterlogg-in-action.jpg)
 
 ### Genesis
-Fitbit is one of the most fun wearable computing devices around, and it's frequently used in Google Glass hackathons as the base for neat ideas. There are also several cool projects leveraging the Fitbit API, including:
+Fitbit is one of the most fun wearable computing devices around, and it's frequently used in Google Glass hackathons as the base for neat ideas. This repo is the older brother of another wearble technology project I maintain, [WaterLogg for Android Wear](https://github.com/jasonsalas/WaterLoggforWear). There are also several cool projects leveraging the Fitbit API, including:
 
 - [m-distance by Vadim Zaliva](https://github.com/vzaliva/m-distance) (**open source!**)
 - [Nurun's Fitbit Glassware](http://www.digitalforreallife.com/2013/09/fitbit-glassware/)
@@ -25,7 +25,7 @@ This Glassware uses the following libraries:
 
 Using the Task Queue helps greatly with scalability and performance, as the multiple API calls to remote web services can imposes a tad bit of latency, which would add-up at scale. And you don't want delays at your callback URL.  Remember: **DON'T LET YOUR ENDPOINT BECOME YOUR CHOKEPOINT!**
 
-_Disclaimer: This was written to be a personal utility, and due to API rate limits from Google, Fitbit, and Temboo, at the moment probably isn't ready to handle mass deployment requests. It isn't hard at all to scale it up, though, or use a different OAuth library. **Go for it!**_
+_Disclaimer: This was written as a personal utility and for public demonstration purposes, but I don't work for Google, Fitbit, or Temboo. I'm just a total fanboy. Due to API rate limits from Google, Fitbit, and Temboo, at the moment probably isn't ready to handle mass deployment requests. It isn't hard at all to scale it up, though, or use a different OAuth library. **Go for it!**_
 
 ---
 
